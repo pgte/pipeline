@@ -8,9 +8,22 @@ function cloneStack(stack) {
 
 function Pipeline(stack) {
   stack || (stack = [])
+  if (! Array.isArray(stack)) {
+    stack = Array.prototype.slice.apply(arguments)
+  }
 
-  function add(stream) {
+  function push(stream) {
     stack.push(stream)
+  }
+
+  function beforeLast(stream) {
+    if (stack.length < 1) { throw new Error('Must have at least one stream already') }
+    stack.splice(stack.length - 1, 0, stream)
+  }
+
+  function afterFirst(stream) {
+    if (stack.length < 1) { throw new Error('Must have at least one stream already') }
+    stack.splice(1, 0, stream)
   }
 
   function pipe() {
@@ -19,13 +32,16 @@ function Pipeline(stack) {
     while(clonedStack.length > 1) {
       var src = clonedStack.shift()
       var dest = clonedStack[0]
+      //console.log('piping %j into %j', src, dest)
       src.pipe(dest);
     }
   }
 
-  add.pipe = pipe
+  push.pipe = pipe
+  push.beforeLast = beforeLast
+  push.afterFirst = afterFirst
 
-  return add
+  return push
 }
 
 module.exports = Pipeline

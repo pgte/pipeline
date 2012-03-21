@@ -1,7 +1,7 @@
 {
   "name": "pipeline",
   "description": "Building stream chains",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Pedro Teixeira"
   },
@@ -17,6 +17,6 @@
     "bufferedstream": "*"
   },
   "scripts": {
-    "test": "node node_modules/tap/bin/tap.js test.js"
+    "test": "node node_modules/tap/bin/tap.js test/test.js"
   }
 }
