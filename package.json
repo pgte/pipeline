@@ -1,0 +1,22 @@
+{
+  "name": "pipeline",
+  "description": "Building stream chains",
+  "version": "0.0.1",
+  "author": {
+    "name": "Pedro Teixeira"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/pgte/pipeline.git" 
+  },
+  "tags": ["streaming", "pipe", "chaining"],
+  "main": "./pipeline.js",
+  "engines": { "node": ">= 0.6.0" },
+  "devDependencies": {
+    "tap": "*",
+    "bufferedstream": "*"
+  },
+  "scripts": {
+    "test": "node node_modules/tap/bin/tap.js test.js"
+  }
+}
