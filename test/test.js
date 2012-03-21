@@ -108,3 +108,38 @@ test('can add after first last', function(t) {
   pipeline.pipe()
 
 })
+
+test('can push source', function(t) {
+  var src = fs.createReadStream(__dirname + '/fixtures/ABCDEF', {encoding: 'utf8'})
+  
+  var dest = new BufferedStream
+  dest.setEncoding('utf8')
+  
+  var pipeline = Pipeline(dest)
+  pipeline.source(src)
+
+  dest.on('data', function(d) {
+    t.equal(d, 'ABCDEF')
+    t.end()
+  })
+
+  pipeline.pipe()
+
+})
+
+test('can push dest', function(t) {
+  var src = fs.createReadStream(__dirname + '/fixtures/ABCDEF', {encoding: 'utf8'})
+  var dest = new BufferedStream
+  dest.setEncoding('utf8')
+  
+  var pipeline = Pipeline(src)
+  pipeline.dest(dest)
+
+  dest.on('data', function(d) {
+    t.equal(d, 'ABCDEF')
+    t.end()
+  })
+
+  pipeline.pipe()
+
+})

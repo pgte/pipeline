@@ -69,6 +69,41 @@ pipeline.afterFirst(zlib.createGzip())
 pipeline.pipe();
 ```
 
+## Adding a destination stream:
+
+```javascript
+var Pipeline = require('pipeline')
+  , fs = require('fs')
+  , zlib = require('zlib')
+  ;
+
+
+var pipeline = Pipeline(
+    fs.createReadStream('./read_from_this_file')
+);
+
+pipeline.dest(fs.createWriteStream('./write_to_this_file'))
+
+pipeline.pipe();
+```
+
+## Adding a source stream:
+
+```javascript
+var Pipeline = require('pipeline')
+  , fs = require('fs')
+  , zlib = require('zlib')
+  ;
+
+
+var pipeline = Pipeline(
+  fs.createWriteStream('./write_to_this_file')
+);
+
+pipeline.source(fs.createReadStream('./read_from_this_file'))
+
+pipeline.pipe();
+```
 
 # License
 

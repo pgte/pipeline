@@ -26,6 +26,10 @@ function Pipeline(stack) {
     stack.splice(1, 0, stream)
   }
 
+  function source(source) {
+    stack.splice(0, 0, source)
+  }
+
   function pipe() {
     if (stack.length < 2) { throw new Error('Nothing to pipe. Pipeline has ' + stack.length + ' streams') }
     var clonedStack = cloneStack(stack);
@@ -40,6 +44,8 @@ function Pipeline(stack) {
   push.pipe = pipe
   push.beforeLast = beforeLast
   push.afterFirst = afterFirst
+  push.source = source
+  push.dest = push
 
   return push
 }
