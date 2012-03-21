@@ -143,3 +143,23 @@ test('can push dest', function(t) {
   pipeline.pipe()
 
 })
+
+test('can clone', function(t) {
+  var src = fs.createReadStream(__dirname + '/fixtures/ABCDEF')
+  var dest1 = new BufferedStream
+  var dest2 = new BufferedStream
+
+  dest2.setEncoding('utf8')
+  dest2.on('data', function(d) {
+    t.equal('ABCDEF', d)
+    t.end()
+  });
+
+  
+  Pipeline(
+      src
+    , dest1
+    , dest2
+  ).clone().pipe()
+
+})

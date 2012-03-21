@@ -41,11 +41,16 @@ function Pipeline(stack) {
     }
   }
 
+  function clone() {
+    return Pipeline(cloneStack(stack))
+  }
+
   push.pipe = pipe
   push.beforeLast = beforeLast
   push.afterFirst = afterFirst
   push.source = source
   push.dest = push
+  push.clone = clone
 
   return push
 }
