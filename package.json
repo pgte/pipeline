@@ -1,10 +1,14 @@
 {
   "name": "pipeline",
   "description": "Building stream chains",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Pedro Teixeira"
   },
+  "contributors": [
+    {"name": "Pedro Teixeira"},
+    {"name": "Damon Oehlman"}
+  ],
   "repository": {
     "type": "git",
     "url": "http://github.com/pgte/pipeline.git" 
