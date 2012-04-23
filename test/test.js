@@ -163,3 +163,20 @@ test('can clone', function(t) {
   ).clone().pipe()
 
 })
+
+test('can capture end', function(t) {
+  var src = fs.createReadStream(__dirname + '/fixtures/ABCDEF')
+  var dest = new BufferedStream
+  dest.setEncoding('utf8')
+  
+  var pipeline = Pipeline(src)
+  pipeline.dest(dest)
+
+  dest.on('data', function(d) {
+    t.equal(d, 'ABCDEF')
+  })
+
+  pipeline.pipe().on('end', function() {
+    t.end()
+  })
+})

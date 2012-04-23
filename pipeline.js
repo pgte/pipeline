@@ -31,14 +31,18 @@ function Pipeline(stack) {
   }
 
   function pipe() {
+    var result;
+    
     if (stack.length < 2) { throw new Error('Nothing to pipe. Pipeline has ' + stack.length + ' streams') }
     var clonedStack = cloneStack(stack);
     while(clonedStack.length > 1) {
       var src = clonedStack.shift()
       var dest = clonedStack[0]
       //console.log('piping %j into %j', src, dest)
-      src.pipe(dest);
+      result = src.pipe(dest);
     }
+    
+    return result
   }
 
   function clone() {
