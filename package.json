@@ -1,7 +1,7 @@
 {
   "name": "pipeline",
   "description": "Building stream chains",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": {
     "name": "Pedro Teixeira"
   },
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/pgte/pipeline.git" 
+    "url": "http://github.com/pgte/pipeline.git"
   },
   "tags": ["streaming", "pipe", "chaining"],
   "main": "./pipeline.js",
